@@ -4,13 +4,127 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <button class='rock' value ='rock'>Rock</button>
+    <button class='paper' value='paper'>Paper</button>
+    <button class='scissor' value = 'scissor'>Scissor</button>
+
+    <div class="container">The results are: </div>
+
     <script>
         let playerWins = 0;
         let computerWins = 0;
         let ties = 0;
+        let nothing = 0;
+
+        const rock = document.querySelector('.rock');
+        const paper = document.querySelector('.paper');
+        const scissor = document.querySelector('.scissor');
+        const container = document.querySelector('.container');
+        
+
+        rock.addEventListener('click', play => {
+            playerSelection = 'rock';
+            computerSelection = computerPlay();
+            playRound(playerSelection, computerSelection);
+            if (playerWins == 5 || computerWins == 5)
+            {
+                if (playerWins >= 5)
+                {
+                    const gameResult = document.createElement('div');
+                    gameResult.textContent = `You've won! The score was- ${playerWins}, to ${computerWins} with ${ties} ties!`;
+                    gameResult.css
+                    container.appendChild(gameResult);
+                    playerWins = 0;
+                    computerWins = 0;
+                    ties = 0;
+                }
+                else
+                {
+                    const gameResult = document.createElement('div');
+                    gameResult.textContent = `You've lost! The score was- ${computerWins}, to ${playerWins} with ${ties} ties!`;
+                    container.appendChild(gameResult);
+                    playerWins = 0;
+                    computerWins = 0;
+                    ties = 0;
+                }        
+            }
+            else 
+            {
+                nothing++;
+            }
+
+            
+        });
+        paper.addEventListener('click', play => {
+            playerSelection = 'paper';
+            computerSelection = computerPlay();
+            playRound(playerSelection, computerSelection);
+            if (playerWins == 5 || computerWins == 5)
+            {
+                if (playerWins >= 5)
+                {
+                    const gameResult = document.createElement('div');
+                    gameResult.textContent = `You've won! The score was- ${playerWins}, to ${computerWins} with ${ties} ties!`;
+                    gameResult.css
+                    container.appendChild(gameResult);
+                    playerWins = 0;
+                    computerWins = 0;
+                    ties = 0;
+                }
+                else
+                {
+                    const gameResult = document.createElement('div');
+                    gameResult.textContent = `You've lost! The score was- ${computerWins}, to ${playerWins} with ${ties} ties!`;
+                    container.appendChild(gameResult);
+                    playerWins = 0;
+                    computerWins = 0;
+                    ties = 0;
+                }        
+            }
+            else 
+            {
+                nothing++;
+            }
+
+        });
+        scissor.addEventListener('click', play => {
+            playerSelection = 'scissor';
+            computerSelection = computerPlay();
+            playRound(playerSelection, computerSelection);
+            if (playerWins == 5 || computerWins == 5)
+            {
+                if (playerWins >= 5)
+                {
+                    const gameResult = document.createElement('div');
+                    gameResult.textContent = `You've won! The score was- ${playerWins}, to ${computerWins} with ${ties} ties!`;
+                    gameResult.css
+                    container.appendChild(gameResult);
+                    playerWins = 0;
+                    computerWins = 0;
+                    ties = 0;
+                }
+                else
+                {
+                    const gameResult = document.createElement('div');
+                    gameResult.textContent = `You've lost! The score was- ${computerWins}, to ${playerWins} with ${ties} ties!`;
+                    container.appendChild(gameResult);
+                    playerWins = 0;
+                    computerWins = 0;
+                    ties = 0;
+                }        
+            }
+            else 
+            {
+                nothing++;
+            }
+
+        });
+
+        
+
         function computerPlay() { // generates a random number and then chooses r/p/s
             const randomNum = Math.floor(Math.random() * 3) + 1;
             if (randomNum == 1)
@@ -21,7 +135,7 @@
             {
                 return "paper";
             }
-            else {return "scissors";}
+            else {return "scissor";}
         }
         function playRound(playerSelection, computerSelection) {
             if (playerSelection == 'paper')
@@ -29,17 +143,29 @@
                     if (computerSelection == 'paper')
                     {
                         ties++;
-                        return "Tie!";
+                        const results = document.createElement('div');
+                        results.classList.add('result');
+                        results.textContent = `Tie! Results are computer wins: ${computerWins},
+                            player wins: ${playerWins}, ties: ${ties}`;
+                        container.appendChild(results);
                     }
-                    if (computerSelection == 'rock')
+                    else if (computerSelection == 'rock')
                     {
                         playerWins++;
-                        return "Win! Paper beats rock!"
+                        const results = document.createElement('div');
+                        results.classList.add('result');
+                        results.textContent = `Win! Paper beats rock! Results are computer wins: ${computerWins},
+                            player wins: ${playerWins}, ties: ${ties}`;
+                        container.appendChild(results);
                     }
                     else
                     {
                         computerWins++;
-                        return "Lose! Scissors beat paper!"
+                        const results = document.createElement('div');
+                        results.classList.add('result');
+                        results.textContent = `Lose! Siccsors beat paper!Results are computer wins: ${computerWins},
+                            player wins: ${playerWins}, ties: ${ties}`;
+                        container.appendChild(results);
                     }
                 }
             else if (playerSelection == 'rock')  
@@ -47,54 +173,62 @@
                 if (computerSelection == 'paper')
                     {
                         computerWins++;
-                        return "Lose! Paper beats rock!";
+                        const results = document.createElement('div');
+                        results.classList.add('result');
+                        results.textContent = `Lose! Paper beats rock! Results are computer wins: ${computerWins},
+                            player wins: ${playerWins}, ties: ${ties}`;
+                        container.appendChild(results);
                     }
-                    if (computerSelection == 'rock')
+                else if (computerSelection == 'rock')
                     {
                         ties++;
-                        return "Tie!";
+                        const results = document.createElement('div');
+                        results.classList.add('result');
+                        results.textContent = `Tie! Results are computer wins: ${computerWins},
+                            player wins: ${playerWins}, ties: ${ties}`;
+                        container.appendChild(results);
                     }
-                    else
+                else
                     {
                         playerWins++;
-                        return "Win! Rock beats scissors!";
+                        const results = document.createElement('div');
+                        results.classList.add('result');
+                        results.textContent = `Win! Rock beats paper! Results are computer wins: ${computerWins},
+                            player wins: ${playerWins}, ties: ${ties}`;
+                        container.appendChild(results);
                     }
             }
-            else if (playerSelection == 'scissors')
+            else if (playerSelection == 'scissor')
             {
                 if (computerSelection == 'paper')
                     {
                         playerWins++;
-                        return "Win! Sissors beat paper!";
+                        const results = document.createElement('div');
+                        results.classList.add('result');
+                        results.textContent = `Win! Scissors beat paper! Results are computer wins: ${computerWins},
+                            player wins: ${playerWins}, ties: ${ties}`;
+                        container.appendChild(results);
                     }
-                    if (computerSelection == 'rock')
+                else if (computerSelection == 'rock')
                     {
                         computerWins++;
-                        return "Lose! Rock beats scissors!";
+                        const results = document.createElement('div');
+                        results.classList.add('result');
+                        results.textContent = `Lose! Rock beats scissors! Results are computer wins: ${computerWins},
+                            player wins: ${playerWins}, ties: ${ties}`;
+                        container.appendChild(results);
                     }
-                    else
+                else
                     {
                         ties++;
-                        return "Tie!";
+                        const results = document.createElement('div');
+                        results.classList.add('result');
+                        results.textContent = `Tie! Results are computer wins: ${computerWins},
+                            player wins: ${playerWins}, ties: ${ties}`;
+                        container.appendChild(results);
                     }
             }
         }
-        function game() {
-            for (let i = 0; i < 5; i++)
-            {
-                let playerSelection = prompt("Please enter your choice: ")
-                let computerSelection = computerPlay();
-                console.log(playRound(playerSelection, computerSelection));
-            }
-            console.log("The number of computer wins is " + computerWins);
-            console.log("The number of player wins is: " + playerWins);
-            console.log("The number of ties is: " + ties);
-        playerWins = 0;
-        computerWins = 0;
-        ties = 0;
-        }
-
-        game();
     </script>
 </body>
 </html>
